@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MessagingDemo.Orders.MessageHandlers;
+using MessagingDemo.Orders.Sagas;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -24,25 +24,32 @@ namespace MessagingDemo.Orders.Controllers
         public async Task<IActionResult> CreateOrder(InitOrderRequest req)
         {
             var orderId = Guid.NewGuid();
-            await _messageSession.SendLocal(new InitOrder(orderId));
+            await _messageSession.SendLocal(new InitOrder(orderId, req.CustomerId));
             return Accepted(orderId);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddProduct(AddProductRequest req)
+        [HttpPost("{orderId}/products")]
+        public async Task<IActionResult> AddProduct(Guid orderId, [FromBody]AddProductRequest req)
         {
-            await _messageSession.SendLocal(new AddNewProduct(req.OrderId, req.ProductId));
+            await _messageSession.SendLocal(new AddNewProduct(orderId, req.ProductId));
+            return Accepted();
+        }
+        
+        [HttpPost("{orderId}/process")]
+        public async Task<IActionResult> StartOrderProcessing(Guid orderId)
+        {
+            await _messageSession.SendLocal(new StartOrderProcessing(orderId));
             return Accepted();
         }
     }
 
     public class InitOrderRequest
     {
+        public string CustomerId { get; set; }
     }
 
     public class AddProductRequest
     {
-        public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
     }
 }

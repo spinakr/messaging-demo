@@ -22,19 +22,18 @@ namespace MessagingDemo.Logistics.Controllers
             _messageSession = messageSession;
         }
         
-        [HttpPost]
-        public async Task<IActionResult> ReserveProducts(ReserveProductsRequest req)
+        [HttpPost("{customerId}/addresses")]
+        public async Task<IActionResult> AddAddress(string customerId, [FromBody]AddAddressRequest req)
         {
-            await _messageSession.SendLocal(new ReserveProducts(req.OrderId, req.ProductIds));
+            await _messageSession.SendLocal(new AddAddress(customerId, req.Address));
             return Accepted();
         }
 
     }
 
-    public class ReserveProductsRequest
+    public class AddAddressRequest
     {
-        public Guid OrderId { get; set; }
-        public List<Guid> ProductIds { get; set; }
+        public string Address { get; set; }
     }
 
 }

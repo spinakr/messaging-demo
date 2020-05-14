@@ -1,5 +1,8 @@
+using Ice.NServiceBus.Defaults;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.Features;
+using System;
 
 namespace MessagingDemo.CommonConfig
 {
@@ -10,20 +13,25 @@ namespace MessagingDemo.CommonConfig
         {
             _endpointName = endpointName;
         }
-        
+
         public EndpointConfiguration ConfigureEndpoint(HostBuilderContext context)
         {
             var endpointConfiguration = new EndpointConfiguration(_endpointName);
             endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-            // var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            // transport.ConnectionString(context.Configuration.GetValue<string>("ASB_CON_STRING"));
-            // transport.SubscriptionNameShortener(x => x.Split('.').Last());
+            endpointConfiguration.ApplyIceReceiveEndpointDefaults(
+                      new SendAndReceiveSettings()
+                          .WithConnectionString(Environment.GetEnvironmentVariable("ASB_CONNECTION_STRING"))
+                          .SetLocalDevelopment(true));
 
-            var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            transport.ConnectionString("");
-            endpointConfiguration.EnableInstallers();
+            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.DisableFeature<Outbox>();
+
+            endpointConfiguration.Recoverability()
+                .Immediate(cfg => cfg.NumberOfRetries(3))
+                .Delayed(cfg => cfg.NumberOfRetries(0));
 
             return endpointConfiguration;
         }
-    }}
+    }
+}

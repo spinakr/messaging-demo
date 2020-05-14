@@ -24,7 +24,6 @@ namespace MessagingDemo.Payment.Controllers
         public async Task<IActionResult> CreatePaymentRequest(CreatePaymentRequest req)
         {
             var orderId = Guid.NewGuid();
-            await _messageSession.SendLocal(new CollectPayment(orderId));
             return Accepted(orderId);
         }
 

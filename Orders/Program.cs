@@ -35,6 +35,6 @@ namespace MessagingDemo.Orders
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
                 .UseSerilog()
-                .UseNServiceBus(new NServiceBusConfiguration("Orders").ConfigureEndpoint);
+                .UseNServiceBus(new NServiceBusConfiguration("DemoOrders").ConfigureEndpoint);
     }
 }

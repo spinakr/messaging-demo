@@ -1,0 +1,31 @@
+### Init order
+POST http://localhost:5000/api/orders
+content-type: application/json
+
+{
+    "customerId": "160991"
+}
+
+###Add Products
+POST http://localhost:5000/api/orders//products
+content-type: application/json
+
+{
+    "productId": "36947920-84c3-44c5-9cb8-8ca4017c6f91"
+}
+
+###Add Products
+POST http://localhost:5000/api/orders//products
+content-type: application/json
+
+{
+    "productId": "a1093bcb-a090-4c4e-9b6b-6284e30851b0"
+}
+
+###
+POST http://localhost:5000/api/logistics/160991/addresses
+content-type: application/json
+
+{
+    "address": "Stavangergata 29"
+}

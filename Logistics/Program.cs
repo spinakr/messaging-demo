@@ -35,6 +35,6 @@ namespace MessagingDemo.Logistics
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
                 .UseSerilog()
-                .UseNServiceBus(new NServiceBusConfiguration("Payment").ConfigureEndpoint);
+                .UseNServiceBus(new NServiceBusConfiguration("DemoLogistics").ConfigureEndpoint);
     }
 }
