@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace MessagingDemo.Orders
+namespace MessagingDemo.Payment
 {
     public class Startup
     {
@@ -36,14 +35,9 @@ namespace MessagingDemo.Orders
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            }
 
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            // app.UseStaticFiles();
+            // app.UseSpaStaticFiles();
 
             app.UseRouting();
 
@@ -52,15 +46,15 @@ namespace MessagingDemo.Orders
                 endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            // app.UseSpa(spa =>
+            // {
+            //     spa.Options.SourcePath = "ClientApp";
+            //
+            //     if (env.IsDevelopment())
+            //     {
+            //         spa.UseReactDevelopmentServer(npmScript: "start");
+            //     }
+            // });
         }
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using MessagingDemo.Orders.MessageHandlers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using Orders.MessageHandlers;
 
-namespace Orders.Controllers
+namespace MessagingDemo.Orders.Controllers
 {
     [ApiController]
     [Route("api/orders")]
@@ -21,17 +19,30 @@ namespace Orders.Controllers
             _logger = logger;
             _messageSession = messageSession;
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> CreateOrder(InitOrderRequest req)
+        {
+            var orderId = Guid.NewGuid();
+            await _messageSession.SendLocal(new InitOrder(orderId));
+            return Accepted(orderId);
+        }
 
         [HttpPost]
         public async Task<IActionResult> AddProduct(AddProductRequest req)
         {
-            await _messageSession.SendLocal(new AddNewProduct(req.ProductId));
+            await _messageSession.SendLocal(new AddNewProduct(req.OrderId, req.ProductId));
             return Accepted();
         }
     }
 
+    public class InitOrderRequest
+    {
+    }
+
     public class AddProductRequest
     {
+        public Guid OrderId { get; set; }
         public Guid ProductId { get; set; }
     }
 }

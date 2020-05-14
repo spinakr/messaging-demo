@@ -6,7 +6,7 @@ using NServiceBus;
 using Serilog;
 using Serilog.Formatting.Compact;
 
-namespace MessagingDemo.Orders
+namespace MessagingDemo.Logistics
 {
     public class Program
     {
@@ -35,6 +35,6 @@ namespace MessagingDemo.Orders
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
                 .UseSerilog()
-                .UseNServiceBus(new NServiceBusConfiguration("Orders").ConfigureEndpoint);
+                .UseNServiceBus(new NServiceBusConfiguration("Payment").ConfigureEndpoint);
     }
 }

@@ -1,14 +1,19 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Orders
+namespace MessagingDemo.CommonConfig
 {
-    public static class NServiceBusConfiguration
+    public class NServiceBusConfiguration
     {
-        public static EndpointConfiguration ConfigureEndpoint(HostBuilderContext context)
+        private string _endpointName;
+        public NServiceBusConfiguration(string endpointName)
         {
-            var env = context.HostingEnvironment.EnvironmentName;
-            var endpointConfiguration = new EndpointConfiguration($"guesswork.web_{env}");
+            _endpointName = endpointName;
+        }
+        
+        public EndpointConfiguration ConfigureEndpoint(HostBuilderContext context)
+        {
+            var endpointConfiguration = new EndpointConfiguration(_endpointName);
             endpointConfiguration.AuditProcessedMessagesTo("audit");
 
             // var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
@@ -16,7 +21,7 @@ namespace Orders
             // transport.SubscriptionNameShortener(x => x.Split('.').Last());
 
             var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>();
-            transport.ConnectionString("host=rabbitmq");
+            transport.ConnectionString("");
             endpointConfiguration.EnableInstallers();
 
             return endpointConfiguration;

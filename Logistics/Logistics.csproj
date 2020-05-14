@@ -6,7 +6,7 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
-        <RootNamespace>MessagingDemo.Orders</RootNamespace>
+    <RootNamespace>MessagingDemo.Logistics</RootNamespace>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
   </PropertyGroup>
 
@@ -26,7 +26,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
+    <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CommonConfig\CommonConfig.csproj" />
+    <ProjectReference Include="..\Messages.Public\Messages.Public.csproj" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-namespace MessagingDemo.Orders.MessageHandlers
+namespace MessagingDemo.Payment.MessageHandlers
 {
     public class AddNewProduct : ICommand
     {
