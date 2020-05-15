@@ -25,6 +25,8 @@ namespace MessagingDemo.Payment.MessageHandlers
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CollectPaymentSagaData> mapper)
         {
             mapper.ConfigureMapping<OrderProcessingWasStarted>(m => m.OrderId).ToSaga(m => m.OrderId);
+            mapper.ConfigureMapping<ProductWasReservedSuccessfully>(m => m.OrderId).ToSaga(m => m.OrderId);
+            mapper.ConfigureMapping<ProductWasNotInStock>(m => m.OrderId).ToSaga(m => m.OrderId);
         }
 
         public Task Handle(OrderProcessingWasStarted message, IMessageHandlerContext context)
@@ -45,7 +47,6 @@ namespace MessagingDemo.Payment.MessageHandlers
 
             if (Data.Products.Values.All(p => p is object))
             {
-                MarkAsComplete();
                 return context.SendLocal(new CollectPaymentCommand(Data.OrderId));
             }
 
@@ -57,7 +58,6 @@ namespace MessagingDemo.Payment.MessageHandlers
             Data.Products[message.ProductId] = false;
             if (Data.Products.Values.All(p => p is object))
             {
-                MarkAsComplete();
                 return context.SendLocal(new CollectPaymentCommand(Data.OrderId));
             }
             return Task.CompletedTask;

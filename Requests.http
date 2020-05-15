@@ -7,7 +7,7 @@ content-type: application/json
 }
 
 ###Add Products
-POST http://localhost:5000/api/orders//products
+POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/products
 content-type: application/json
 
 {
@@ -15,17 +15,21 @@ content-type: application/json
 }
 
 ###Add Products
-POST http://localhost:5000/api/orders//products
+POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/products
 content-type: application/json
 
 {
     "productId": "a1093bcb-a090-4c4e-9b6b-6284e30851b0"
 }
 
-###
-POST http://localhost:5000/api/logistics/160991/addresses
+### Set shipping address
+POST http://localhost:7000/api/logistics/160991/addresses
 content-type: application/json
 
 {
     "address": "Stavangergata 29"
 }
+
+### start order processing
+POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/process
+content-type: application/json

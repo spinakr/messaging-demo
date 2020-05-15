@@ -25,6 +25,7 @@ namespace MessagingDemo.CommonConfig
                           .SetLocalDevelopment(true));
 
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+            persistence.SagaStorageDirectory("../SagaStorage");
             endpointConfiguration.DisableFeature<Outbox>();
 
             endpointConfiguration.Recoverability()

@@ -11,7 +11,7 @@ namespace MessagingDemo.Logistics.MessageHandlers
     {
         public Task Handle(PaymentWasCollectedSuccessfully message, IMessageHandlerContext context)
         {
-            return Task.CompletedTask;
+            return context.SendLocal(new ShipOrder { OrderId = message.OrderId});
         }
     }
 }

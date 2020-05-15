@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MessagingDemo.Orders.Sagas;
 using Microsoft.AspNetCore.Mvc;
@@ -13,17 +14,23 @@ namespace MessagingDemo.Orders.Controllers
     {
         private readonly ILogger<OrdersController> _logger;
         private readonly IMessageSession _messageSession;
+        private static readonly Stack<Guid> _guids = new Stack<Guid>(new[] {
+            Guid.Parse("02210974-7916-494c-9e6e-6c980fc3bc17"),
+            Guid.Parse("88496a14-a9f0-4f3d-bcab-4cee0d9a62d8"),
+            Guid.Parse("f9a0ee02-b9c5-429a-b450-5f1b9c2adb0b"),
+        });
+
 
         public OrdersController(ILogger<OrdersController> logger, IMessageSession messageSession)
         {
             _logger = logger;
             _messageSession = messageSession;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> CreateOrder(InitOrderRequest req)
         {
-            var orderId = Guid.NewGuid();
+            var orderId = _guids.Pop();
             await _messageSession.SendLocal(new InitOrder(orderId, req.CustomerId));
             return Accepted(orderId);
         }
@@ -34,7 +41,7 @@ namespace MessagingDemo.Orders.Controllers
             await _messageSession.SendLocal(new AddNewProduct(orderId, req.ProductId));
             return Accepted();
         }
-        
+
         [HttpPost("{orderId}/process")]
         public async Task<IActionResult> StartOrderProcessing(Guid orderId)
         {
