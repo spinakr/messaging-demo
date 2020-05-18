@@ -39,6 +39,7 @@ namespace MessagingDemo.Orders.Sagas
             Data.Products = new List<Guid>();
             Data.Shipped = false;
             Data.Payed = false;
+            Data.CustomerId = message.CustomerId;
             return Task.CompletedTask;
         }
 

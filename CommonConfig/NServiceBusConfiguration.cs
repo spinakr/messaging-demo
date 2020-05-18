@@ -29,7 +29,7 @@ namespace MessagingDemo.CommonConfig
             endpointConfiguration.DisableFeature<Outbox>();
 
             endpointConfiguration.Recoverability()
-                .Immediate(cfg => cfg.NumberOfRetries(3))
+                .Immediate(cfg => cfg.NumberOfRetries(1))
                 .Delayed(cfg => cfg.NumberOfRetries(0));
 
             return endpointConfiguration;

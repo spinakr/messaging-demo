@@ -1,13 +1,21 @@
 ### Init order
+
+@customerId = "160991"
+
+# @name init
 POST http://localhost:5000/api/orders
 content-type: application/json
 
 {
-    "customerId": "160991"
+    "customerId": {{customerId}}
 }
 
-###Add Products
-POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/products
+###
+
+@orderId = {{init.response.body.$}}
+
+
+POST http://localhost:5000/api/orders/{{orderId}}/products
 content-type: application/json
 
 {
@@ -15,7 +23,7 @@ content-type: application/json
 }
 
 ###Add Products
-POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/products
+POST http://localhost:5000/api/orders/{{orderId}}/products
 content-type: application/json
 
 {
@@ -23,7 +31,7 @@ content-type: application/json
 }
 
 ### Set shipping address
-POST http://localhost:7000/api/logistics/160991/addresses
+POST http://localhost:7000/api/logistics/{{customerId}}/addresses
 content-type: application/json
 
 {
@@ -31,5 +39,5 @@ content-type: application/json
 }
 
 ### start order processing
-POST http://localhost:5000/api/orders/88496a14-a9f0-4f3d-bcab-4cee0d9a62d8/process
+POST http://localhost:5000/api/orders/{{orderId}}/process
 content-type: application/json

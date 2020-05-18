@@ -16,8 +16,10 @@ namespace MessagingDemo.Orders.Controllers
         private readonly IMessageSession _messageSession;
         private static readonly Stack<Guid> _guids = new Stack<Guid>(new[] {
             Guid.Parse("02210974-7916-494c-9e6e-6c980fc3bc17"),
-            Guid.Parse("88496a14-a9f0-4f3d-bcab-4cee0d9a62d8"),
-            Guid.Parse("f9a0ee02-b9c5-429a-b450-5f1b9c2adb0b"),
+
+            Guid.Parse("9560d054-151e-4aaf-8e61-429d5332c2fb"),
+            Guid.Parse("c1ab1c14-b985-478a-824f-1d411a379850"),
+            Guid.Parse("bbffd96a-4fb0-424f-aa01-da17863b2777"),
         });
 
 
