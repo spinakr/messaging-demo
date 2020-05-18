@@ -14,7 +14,7 @@ namespace MessagingDemo.CommonConfig
             _endpointName = endpointName;
         }
 
-        public EndpointConfiguration ConfigureEndpoint(HostBuilderContext context)
+        public EndpointConfiguration ConfigureEndpoint(HostBuilderContext context = null)
         {
             var endpointConfiguration = new EndpointConfiguration(_endpointName);
             endpointConfiguration.AuditProcessedMessagesTo("audit");

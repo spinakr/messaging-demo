@@ -1,17 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders", "Orders\Orders.csproj", "{4000DA22-EF14-4D00-A216-67D89F9A4AAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders", "Orders\Orders.csproj", "{4000DA22-EF14-4D00-A216-67D89F9A4AAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment", "Payment\Payment.csproj", "{D9BFFE76-6E7A-46E7-86AB-8B1778AAF5FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Payment", "Payment\Payment.csproj", "{D9BFFE76-6E7A-46E7-86AB-8B1778AAF5FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonConfig", "CommonConfig\CommonConfig.csproj", "{0DB14083-46D7-4187-AE52-748A3EB228BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonConfig", "CommonConfig\CommonConfig.csproj", "{0DB14083-46D7-4187-AE52-748A3EB228BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages.Public", "Messages.Public\Messages.Public.csproj", "{56426C04-C0C0-4149-9499-CD3B220DE164}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages.Public", "Messages.Public\Messages.Public.csproj", "{56426C04-C0C0-4149-9499-CD3B220DE164}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logistics", "Logistics\Logistics.csproj", "{F0EBDA25-CDD0-4AFF-BD2B-AD932DBC9E57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logistics", "Logistics\Logistics.csproj", "{F0EBDA25-CDD0-4AFF-BD2B-AD932DBC9E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchImporter", "BatchImporter\BatchImporter.csproj", "{A8A26065-772A-4876-9CBC-84C51B572D0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4000DA22-EF14-4D00-A216-67D89F9A4AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -86,5 +85,23 @@ Global
 		{F0EBDA25-CDD0-4AFF-BD2B-AD932DBC9E57}.Release|x64.Build.0 = Release|Any CPU
 		{F0EBDA25-CDD0-4AFF-BD2B-AD932DBC9E57}.Release|x86.ActiveCfg = Release|Any CPU
 		{F0EBDA25-CDD0-4AFF-BD2B-AD932DBC9E57}.Release|x86.Build.0 = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|x64.Build.0 = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8A26065-772A-4876-9CBC-84C51B572D0E}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2BE75D1D-BE0E-4D14-A9AB-BDD807596A97}
 	EndGlobalSection
 EndGlobal
