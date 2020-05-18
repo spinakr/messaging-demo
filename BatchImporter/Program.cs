@@ -21,7 +21,7 @@ namespace BatchImporter
 
 
 
-            _endpoint = await Endpoint.Start(ConfigureEndpoint("BatchImproter"));
+            _endpoint = await Endpoint.Start(ConfigureEndpoint("DemoBatchImporter"));
             var batchFile = await File.ReadAllLinesAsync("importFile.csv");
             var lines = batchFile.Skip(1);
 
@@ -33,7 +33,8 @@ namespace BatchImporter
                     var toInvoice = new ToInvoice(props[0], props[1], props[2], int.Parse(props[3]));
                     Console.WriteLine($"Created invoice for {toInvoice.Name}");
                 }
-            }else if (key == "2")
+            }
+            else if (key == "2")
             {
                 var tasks = new List<Task>();
                 foreach (var line in lines)

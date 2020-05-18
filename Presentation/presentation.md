@@ -1,0 +1,124 @@
+---
+theme: "solarized"
+transition: "slide"
+highlightTheme: "darkula"
+logoImg: "https://www.ice.no/Content/Images/ice-logo.svg"
+slideNumber: true
+---
+
+# Practical Messaging
+* Demo event driven system
+* Demo message driven batch
+* Obstacles in message driven systems
+
+
+
+---
+
+## Event driven ordersystem (Demo)
+
+
+---
+
+## Message based batch processing (Demo)
+
+
+---
+
+## Transport transactions 
+### At-least-once delivery
+
+
+--
+
+### Receiving messages
+
+![](msg1.jpg)
+
+--
+
+Message handler logic will be executed\
+ *at-least once* per message on the queue
+
+--
+
+### Sending messages
+
+![](msg2.jpg)
+
+--
+
+Messages can be duplicated when sent to different queues
+
+--
+
+### Atomic operations
+* All IO operations must be committed as one
+* Fail or complete together
+
+--
+
+#### Forwarding
+
+![](msg3.jpg)
+
+---
+
+### Partial completion
+
+--
+
+ * Operations targeting multiple storage types
+ * Not possible to execute atomically
+
+--
+
+![](msg4.jpg)
+
+--
+
+Parts of message handler executed before failure,\
+logic possibly executed twice
+
+--
+
+#### Outbox
+
+![](msg5.jpg)
+
+--
+
+Duplicates can still occur!
+
+---
+
+### Idempotency
+
+--
+
+#### Natural idempotency
+
+* TurnLightSwitch
+* SwitchOfTheLights
+
+---
+
+#### De-duplication
+
+![](msg6.jpg)
+
+---
+
+### NServiceBus outbox
+* Implementation of outbox + de-dup for SQL server
+* Ensures exactly-once delivery
+
+--
+
+![](nsb-outbox.svg)
+
+---
+
+
+
+
