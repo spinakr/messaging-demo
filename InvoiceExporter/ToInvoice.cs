@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 
-namespace MessagingDemo.BatchImporter
+namespace MessagingDemo.InvoiceExporter
 {
     public class ToInvoice
     {

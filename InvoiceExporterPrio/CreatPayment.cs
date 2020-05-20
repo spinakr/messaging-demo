@@ -4,20 +4,21 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MessagingDemo.BatchImporter
+namespace MessagingDemo.InvoiceExporterPrio
 {
-    public class ImportLine : ICommand
+    public class CreatInvoice : ICommand
     {
+        public Guid Id { get; set; }
         public string Line { get; set; }
     }
 
-    public class ImportLineHandler : IHandleMessages<ImportLine>
+    public class CreatInvoiceHandler : IHandleMessages<CreatInvoice>
     {
-        public Task Handle(ImportLine message, IMessageHandlerContext context)
+        public Task Handle(CreatInvoice message, IMessageHandlerContext context)
         {
             var props = message.Line.Split(';');
             var toInvoice = new ToInvoice(props[0], props[1], props[2], int.Parse(props[3]));
-            Console.WriteLine($"Created invoice for {toInvoice.Name}");
+            Status.InvoiceCreated();
             return Task.CompletedTask;
         }
     }

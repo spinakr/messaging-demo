@@ -7,27 +7,35 @@ slideNumber: true
 ---
 
 # Practical Messaging
-* Demo event driven system
-* Demo message driven batch
+* Demo message driven batch (ServicePulse)
+* Demo event driven order system (ServiceInsight)
 * Obstacles in message driven systems
-
-
-
----
-
-## Event driven ordersystem (Demo)
-
+* Demo dependant invoice generation system
 
 ---
 
 ## Message based batch processing (Demo)
 
+--
+
+![](importer1.jpg)
+
+--
+
+![](importer2.jpg)
+
+---
+
+## Event driven ordersystem (Demo)
+
+--
+
+![](order1.jpg)
 
 ---
 
 ## Transport transactions 
 ### At-least-once delivery
-
 
 --
 
@@ -70,6 +78,7 @@ Messages can be duplicated when sent to different queues
 
  * Operations targeting multiple storage types
  * Not possible to execute atomically
+ * E.g. queue + SQL
 
 --
 
@@ -117,8 +126,34 @@ Duplicates can still occur!
 
 ![](nsb-outbox.svg)
 
+--
+
+### Message ordering
+* No guarantee on message order
+
+--
+
+
+![](ordering1.jpg)
+
+--
+
+* No magic solution
+* Never asume ordered message delivery
+* Avoid dependant messages
+
 ---
 
+## Dependant invoice generation system (Demo)
 
+--
+
+![](invoice1.jpg)
+
+--
+
+![](invoice2.jpg)
+
+---
 
 
