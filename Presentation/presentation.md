@@ -2,8 +2,14 @@
 theme: "solarized"
 transition: "slide"
 highlightTheme: "darkula"
-logoImg: "https://www.ice.no/Content/Images/ice-logo.svg"
 slideNumber: true
+---
+
+# Practical Messaging
+
+### Presentation starts ~ 12:02
+
+
 ---
 
 # Practical Messaging
